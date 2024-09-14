@@ -12,6 +12,6 @@ const mythicalCreatures = [
 
 console.log("Water Type:", mythicalCreatures.find(creature => creature.type == "Water"));
 
-console.log("The Griffin:", mythicalCreatures.find(creature => creature.name == "Griffin"));
+console.log("The Griffin:", mythicalCreatures.findIndex(creature => creature.name == "Griffin"));
 
 console.log("Last seen in The Enchanted Forest:", mythicalCreatures.find(creature => creature.lastSeen == "Enchanted Forest"));
