@@ -28,9 +28,6 @@ colorForm.addEventListener("submit",(event => {
 }));
 
 newBoxButton.addEventListener("click", createBox);
-this.documentElement.addEventListener("keypress",(key)=>{
-    if(key.code === "KeyN"){createBox();}
-});
 
 let boxIdCounter = 0;
 function createBox(){
@@ -40,19 +37,28 @@ function createBox(){
     box.textContent = myName;
     box.className = "box";
     box.style.backgroundColor = boxColor;
+    box.id = myName;
     boxContainer.appendChild(box);
-
-    box.addEventListener("dblclick",()=>{
-        box.remove();
-    });
-
-    box.addEventListener("mouseenter",(event)=>{
-        box.textContent = `x: ${event.pageX}, y: ${event.pageY}`
-    });
-    box.addEventListener("mouseleave",()=>{
-        box.textContent = myName;
-    });
 }
 createBox(); createBox(); createBox();
+
+// event delegation
+function getBox(event, boxElement){
+    const b = event.target;
+    if(b.className != "box"){return;}
+    boxElement(b);
+}
+document.addEventListener("pointerover",(event)=>{getBox(event,(box)=>
+    box.textContent = `x: ${event.pageX}, y: ${event.pageY}`
+)});
+document.addEventListener("pointerout",(event)=>{getBox(event,(box)=>
+    box.textContent = box.id
+)});
+document.addEventListener("dblclick",(event)=>{getBox(event,(box)=>
+    box.remove()
+)});
+document.addEventListener("keypress",(key)=>{
+    if(key.code === "KeyN"){createBox();}
+});
 
 })
