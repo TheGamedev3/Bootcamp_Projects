@@ -1,0 +1,16 @@
+.missionContainer
+{
+  display: flex;
+  flex-grow: 1;
+  justify-content: space-between;
+  margin-bottom: 2px;
+  padding: 10px;
+  border: 2px solid #36008d;
+  background-color: #0e012c;
+  border-radius: 10px;
+}
+
+.missionContainer:last-child
+{
+  margin-bottom: 20px;
+}
