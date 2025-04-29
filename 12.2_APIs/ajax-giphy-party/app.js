@@ -11,7 +11,6 @@ async function getGif(searchFor){
 
   console.log(response);
   const res = response.data;
-
   let numResults = res.data.length;
   if (numResults) {
     let randomIdx = Math.floor(Math.random() * numResults);
