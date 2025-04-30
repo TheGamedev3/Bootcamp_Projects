@@ -27,12 +27,11 @@ export default function Site(){
             return[...pre, mat];
         });
     }
-    const RemoveMaterial = (matToRemove) => {
+    const RemoveMaterial = (i) => {
         changeMats((prev) => {
           const copy = [...prev];
-          const index = copy.indexOf(matToRemove);
-          if (index !== -1) {
-            copy.splice(index, 1); // ✅ remove the item by index
+          if (i !== -1) {
+            copy.splice(i, 1); // ✅ remove the item by index
           } return copy;
         });
       };
@@ -65,7 +64,7 @@ export default function Site(){
                 >
                     {/* 🗑️ Delete button in top-right */}
                     <button
-                    onClick={() => RemoveMaterial(mat)}
+                    onClick={() => RemoveMaterial(i)}
                     style={{
                         position: 'absolute',
                         top: '6px',
