@@ -1,11 +1,11 @@
 
 import './App.css';
-import Site from './MyStuff/Site';
+import RouteSelector from './MyStuff/RouteSelector';
 
 import { HashRouter } from 'react-router-dom';
 
 function App() {
-  return(<HashRouter><Site/></HashRouter>);
+  return(<HashRouter><RouteSelector/></HashRouter>);
 }
 
 export default App;

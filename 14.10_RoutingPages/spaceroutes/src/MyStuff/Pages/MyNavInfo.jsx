@@ -4,7 +4,7 @@ import navOptions from "../NavOptions";
 import { useLocation } from "react-router-dom";
 export function useNavInfo(){
     const location = useLocation();
-    const found = navOptions.find((opt)=>opt.path === location.pathname);
+    const found = navOptions.find((opt)=>location.pathname.includes(opt.path));
     return(
         Object.fromEntries(
             Object.entries(found)

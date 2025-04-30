@@ -22,7 +22,8 @@ export function useRouteListener(){
 
 var goneBack = null;
 export function getPrevious(){
-    if(history.length<2){return}
+    if(history.length===0){return'info'}
+    if(history.length<2){return history[0]}
     history.pop();
     goneBack = history[history.length-1];
     return goneBack;

@@ -4,7 +4,7 @@ export default function Encycle(){
         <div style={{
             backgroundColor:'#d4d4d4',
             color:'black',
-            minHeight: '100%'
+            flex: 1, height: 0, overflow: 'auto'
         }}>
             {'\n'}
             <h2><b>Welcome to the navigator!🚀</b></h2>
