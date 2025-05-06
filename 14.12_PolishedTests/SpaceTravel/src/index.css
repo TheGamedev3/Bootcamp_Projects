@@ -1,0 +1,14 @@
+/* Ensure the background fills the whole viewport */
+html, body, #root {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+  }
+  
+  /* Apply background + inner padding */
+  #root {
+    background-color: black;
+    padding: 20px; /* or whatever padding you want inward */
+    box-sizing: border-box;
+  }
+  

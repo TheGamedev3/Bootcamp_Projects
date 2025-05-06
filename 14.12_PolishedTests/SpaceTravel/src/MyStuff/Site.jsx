@@ -6,17 +6,14 @@ import { useRef } from "react";
 
 import OuterSpace2 from "./API/OuterSpace2";
 
-function Craft({craft}){
-    return(
-        <div>{'🚀'+craft.name}</div>
-    )
-}
+import PlanetPfp from "./SpaceComponents/Planet";
+import Ship from "./SpaceComponents/Ship";
 function Planet({planet}){
     const crafts = OuterSpace2.useCraftsAtPlanet(planet);
     return(
         <div>
-            <div>{planet.name}</div>
-            {crafts.map((craft, i)=><Craft craft={craft} key={i}/>)}
+            <PlanetPfp planet={planet}/>
+            {crafts.map((craft, i)=><Ship ship={craft} key={i} independent={true}/>)}
         </div>
     )
 }

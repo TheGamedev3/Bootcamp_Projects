@@ -16,6 +16,8 @@ export const PlanetType = {
     type:'planet'
 }
 
+import OuterSpace2 from "./OuterSpace2";
+
 export const SpacecraftType = {
     type:'spacecraft',
     async destroy(){
@@ -30,7 +32,10 @@ export const SpacecraftType = {
         await refreshAll();
         finish();
     },
-    isAtPlanet(planet){return this.currentLocation === planet.id}
+    isAtPlanet(planet){return this.currentLocation === planet.id},
+    getMyPlanet(){
+        return OuterSpace2.planets.find(planet => planet.id === this.currentLocation);
+    }
 }
 
 export async function createCraft(...args){
@@ -41,7 +46,6 @@ export async function createCraft(...args){
 }
 
 import { fireSignal } from "./Events";
-import OuterSpace2 from "./OuterSpace2";
 export async function refreshAll() {
     const [planetInfo, spacecraftInfo] = await Promise.all([
       SpaceTravelApi.getPlanets(),
