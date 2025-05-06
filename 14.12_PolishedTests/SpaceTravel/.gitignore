@@ -1,0 +1,14 @@
+# Ignore node_modules
+node_modules/
+
+# Optional: Ignore Vite cache
+.vite/
+
+# Optional: Ignore logs, system files, and IDE stuff
+dist/
+*.log
+.env
+.DS_Store
+.vscode/
+.idea/
+coverage/
