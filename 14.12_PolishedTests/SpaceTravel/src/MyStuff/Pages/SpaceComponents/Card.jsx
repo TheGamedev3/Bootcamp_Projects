@@ -168,3 +168,29 @@ export function ButtonRow({style, children}){
         </Row>
     );
 }
+
+export function Page({children}){
+    return(
+        <Row>
+            <div style={{
+                width:'100%',
+                flexDirection: 'column',
+                alignItems: 'center',
+                justifyContent: 'center',
+                display: 'flex',
+                textAlign: 'center',
+                rowGap:'10px',
+            }}>
+                {children}
+            </div>
+        </Row>
+    );
+}
+
+export function Button({text, style, onClick}){
+    return(
+        <Card onClick={onClick} style={{fontSize:'1.2rem', padding: '1px 0px', ...style}}>
+            <b>{text}</b>
+        </Card>
+    );
+}

@@ -1,19 +1,18 @@
 
 import { useNavigate, useLocation } from 'react-router-dom';
-import { Card } from '../SpaceComponents/Card';
+import { Button } from '../SpaceComponents/Card';
 
 export function SmartBackButton(){
     const navigate = useNavigate();
     const location = useLocation();
 
     return(
-        <Card onClick={()=>{
-            location.pathname === '/ships'
-            ? navigate(-1)
-            : navigate('/ships')
-        }}>
-            <b>Back</b>
-        </Card>
+        <Button
+            text='⬅️ Back'
+            onClick={async()=>{
+                navigate('/ships')
+            }}
+        />
     );
 }
 
@@ -25,13 +24,12 @@ export function ScrapButton() {
     const ship = OuterSpace2.useMyself();
 
     return(
-        <Card onClick={async()=>{
-            await ship.destroy();
-            location.pathname === '/ships'
-            ? navigate(-1)
-            : navigate('/ships')
-        }}>
-            <b>🗑️ Scrap</b>
-        </Card>
+        <Button
+            text='🗑️ Scrap'
+            onClick={async()=>{
+                await ship.destroy();
+                navigate('/ships')
+            }}
+        />
     );
 }

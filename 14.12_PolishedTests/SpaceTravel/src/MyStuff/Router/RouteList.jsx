@@ -8,6 +8,7 @@ const Planets=React.lazy(() => import('../Pages/Planets'));
 const Ships=React.lazy(() => import('../Pages/ShipSection/Ships'));
 const Desc=React.lazy(() => import('../Pages/ShipSection/Desc'));
 const List=React.lazy(() => import('../Pages/ShipSection/List'));
+const Build=React.lazy(() => import('../Pages/ShipSection/Build'));
 
 const routeList=[
     {path:'/', title:'🏠 Home'},
@@ -15,7 +16,7 @@ const routeList=[
     {path:'/planets', title:'🌎 Planets', element:()=><Planets/>},
     {path:'/ships', title:'🚀 Ships', element:()=><Ships/>, sub:[
         {path:'', element:()=><List/>},
-        {path:'create', element:()=><div>Creation</div>},
+        {path:'create', element:()=><Build/>},
         {path:'description/:id', element:()=><Desc/>},
     ]},
 ];
