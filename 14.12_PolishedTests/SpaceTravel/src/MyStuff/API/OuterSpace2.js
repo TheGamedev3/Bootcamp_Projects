@@ -1,18 +1,19 @@
 
 import { spaceString } from "./API_Bridge";
-import { createCraft, getPlanetByName, getCraftByName } from "./Methods";
-import * as Hooks from './Hooks';
 import { readyUp } from "./Events";
+
+import * as Hooks from './Hooks';
+import * as Functions from './Functions';
+
 
 const OuterSpace2={
     ready:false,
 
     spaceString,
-    createCraft,
-    getPlanetByName, getCraftByName,
+    
     readyUp,
 
-    ...Hooks,
+    ...Functions, ...Hooks,
 
     planets:null, spacecrafts:null
 }

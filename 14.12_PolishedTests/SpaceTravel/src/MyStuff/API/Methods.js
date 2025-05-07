@@ -17,32 +17,24 @@ export const PlanetType = {
 }
 
 import OuterSpace2 from "./OuterSpace2";
+import { getPlanetById } from "./Functions";
 
 export const SpacecraftType = {
     type:'spacecraft',
     async destroy(){
         const finish=Loading(`destroying craft ${this.name}...`);
-        const _res = await SpaceTravelApi.destroySpacecraftById({id:this.id});
+        await SpaceTravelApi.destroySpacecraftById({id:this.id});
         await refreshAll();
         finish();
     },
     async sendTo(planet){
         const finish=Loading(`flying ${this.name} to ${planet.name}...`);
-        const _res = await SpaceTravelApi.sendSpacecraftToPlanet({spacecraftId:this.id, targetPlanetId:planet.id});
+        await SpaceTravelApi.sendSpacecraftToPlanet({spacecraftId:this.id, targetPlanetId:planet.id});
         await refreshAll();
         finish();
     },
     isAtPlanet(planet){return this.currentLocation === planet.id},
-    getMyPlanet(){
-        return OuterSpace2.planets.find(planet => planet.id === this.currentLocation);
-    }
-}
-
-export async function createCraft(...args){
-    const finish=Loading(`creating the ${args[0].name}...`);
-    const _res = await SpaceTravelApi.buildSpacecraft(...args);
-    await refreshAll();
-    finish();
+    getMyPlanet(){return getPlanetById(this.currentLocation)}
 }
 
 import { fireSignal } from "./Events";
@@ -57,15 +49,4 @@ export async function refreshAll() {
   
     fireSignal('planets', OuterSpace2.planets);
     fireSignal('crafts', OuterSpace2.spacecrafts);
-}  
-
-// usually for debug purposes
-export function getPlanetByName(name) {
-    const lower = name.toLowerCase();
-    return OuterSpace2.planets.find(planet => planet.name.toLowerCase() === lower);
-}
-
-export function getCraftByName(name) {
-    const lower = name.toLowerCase();
-    return OuterSpace2.spacecrafts.find(craft => craft.name.toLowerCase() === lower);
 }

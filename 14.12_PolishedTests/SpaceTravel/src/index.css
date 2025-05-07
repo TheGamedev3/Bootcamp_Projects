@@ -8,7 +8,7 @@ html, body, #root {
   /* Apply background + inner padding */
   #root {
     background-color: black;
-    padding: 20px; /* or whatever padding you want inward */
+    padding: 0px; /* or whatever padding you want inward */
     box-sizing: border-box;
   }
   

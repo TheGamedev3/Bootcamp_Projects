@@ -16,6 +16,11 @@ export function useLoadings(){
 }
 
 
+export function useReady(){
+    const{loading, reason} = useLoadings();
+    return(!loading || reason !== 'fetching starter data...')
+}
+
 
 export function usePlanets(){
     const[planets, setPlanets]=useState(OuterSpace2.planets);
