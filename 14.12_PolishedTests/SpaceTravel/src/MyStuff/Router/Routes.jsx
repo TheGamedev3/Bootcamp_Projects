@@ -8,7 +8,7 @@ import FreezeWrapper from "./FreezeWrapper";
 import FlightPaths from '../Pages/FlightPaths';
 import OuterSpace2 from "../API/OuterSpace2";
 
-import { Row } from '../Pages/SpaceComponents/Card';
+import { ButtonRow } from '../Pages/SpaceComponents/Card';
 import React, { Suspense } from 'react';
 
 import routeList from './RouteList';
@@ -27,26 +27,16 @@ function Router(){
             transition: 'filter 0.3s ease',
         }}>
 
-            <Row style={{
-                backgroundColor:'black',
-                color: 'white',
-                fontSize: '2rem',
-                padding:'10px 10px',
-                justifyContent: 'center'
-            }}>
-                <nav style={{
-                    display: 'flex', justifyContent: 'center', gap: '40px'
-                }}>
-                    <Link to="/back" onClick={(e)=>{
-                        e.preventDefault();
-                        navigate(-1);
-                    }}>🔙</Link>
+            <ButtonRow>
+                <Link to="/back" onClick={(e)=>{
+                    e.preventDefault();
+                    navigate(-1);
+                }}>🔙</Link>
 
-                    {routeList.map(({path, title},i)=>(
-                        <Link to={path} key={i}>{title}</Link>
-                    ))}
-                </nav>
-            </Row>
+                {routeList.map(({path, title},i)=>(
+                    <Link to={path} key={i}>{title}</Link>
+                ))}
+            </ButtonRow>
             
             <main style={{ position: 'relative', maxWidth: '100%', height: '100%', overflow: 'hidden', padding:'0px 40px' }}>
                 {/* Scrollable content */}

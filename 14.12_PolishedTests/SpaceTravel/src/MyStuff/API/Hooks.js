@@ -30,8 +30,9 @@ export function usePlanets(){
             (async()=>{
                 await readyUp();
                 setPlanets(OuterSpace2.planets);
-            })()
+            })();
         }
+        return listenFor('planets', () => setPlanets(OuterSpace2.planets));
     },[]);
 
     return planets;
@@ -88,5 +89,45 @@ export function useOnce(func){
             ref.current = true;
             func();
         }
+    }, []);
+}
+
+
+import { createContext, useContext } from 'react';
+
+export const ObjectContext = createContext();
+
+export function useMyself(){
+    return useContext(ObjectContext);
+}
+
+import { selected, selectObject, resetSelection } from "./Selector";
+
+// used in FullPlanet.jsx to control moving the ships around
+export function useMoveTargets(object){
+
+    const targetMe = ()=>selectObject(object);
+    const evaluate=()=>{
+        if(object.type==='spacecraft'){
+            return selected.ship === object.id;
+        }else if(object.type==='planet'){
+            return selected.planet === object.id;
+        }
+    }
+    const[isTargeted, setTargetState]=useState(evaluate());
+
+    useEffect(() => {
+        return listenFor(
+            'moveTargetsChanged',
+            () => setTargetState(evaluate())
+        );
+    }, []);
+
+    return[isTargeted, targetMe];
+}
+
+export function useFlightPage(){
+    useEffect(() => {
+        return ()=>resetSelection();
     }, []);
 }

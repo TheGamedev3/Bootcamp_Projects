@@ -1,49 +1,57 @@
 
 
 import OuterSpace2 from "../../API/OuterSpace2";
+import ObjectWrap from "./ObjectWrapper";
+import InjectShipDelete from "./ShipDelete";
 
 import {
     Row, Card,
-    Header, Profile, Subtitle
+    Header, Profile 
 } from "./Card";
-
-var currentCraft = null;
 
 function MiniCraft({ship}){
     const myPfp = ship.pictureUrl || 'https://th.bing.com/th/id/OIP.K15zdMQUpDP92j5PUnm2NAHaEK?cb=iwp1&rs=1&pid=ImgDetMain'
+    const[isTargeted, targetMe] = OuterSpace2.useMoveTargets(ship);
 
     return(
-        <Card
-            bevel={32} size={120}
-            //colors={{text:'black', back:'#C6C8CA', border:'white'}} //{text:'black', back:'#C6C8CA', border:'white'}
-            onClick={()=>{currentCraft = ship}}
-        >
-            <Header title={ship.name} size='0.8'/>
-            <Profile url={myPfp}/>
-        </Card>
+        <ObjectWrap object={ship}>
+            <InjectShipDelete>
+                <Card
+                    bevel={32} size={120}
+                    onClick={()=>targetMe()}
+                    selectedStyle={{borderColor:'cyan'}}
+                    selected={isTargeted}
+                >
+                    <Header title={ship.name} size='0.8'/>
+                    <Profile url={myPfp}/>
+                </Card>
+            </InjectShipDelete>
+        </ObjectWrap>
     );
 }
 
 import Planet from "./Planet";
 export default function FullPlanet({planet}){
-    const pop = planet.currentPopulation;
     const crafts = OuterSpace2.useCraftsAtPlanet(planet);
-
+    const[isTargeted, targetMe] = OuterSpace2.useMoveTargets(planet);
     return(
-        <Row>
-            <Planet
-                planet={planet}
-                bevel={16} size={150}
-                onClick={()=>{currentCraft?.sendTo(planet)}}
-            />
-
-            {crafts.map((ship, i)=>(
-                <MiniCraft
-                    ship={ship}
-                    key={`${planet.name}_${i}`}
+        <ObjectWrap object={planet}>
+            <Row style={{gap:'10px'}}>
+                <Planet
+                    planet={planet}
+                    bevel={16} size={150}
+                    onClick={()=>targetMe()}
+                    selected={isTargeted}
                 />
-            ))}
 
-        </Row>
+                {crafts.map((ship, i)=>(
+                    <MiniCraft
+                        ship={ship}
+                        key={`${planet.name}_${i}`}
+                    />
+                ))}
+
+            </Row>
+        </ObjectWrap>
     )
 }

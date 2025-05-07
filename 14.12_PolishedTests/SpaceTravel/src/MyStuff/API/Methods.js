@@ -23,6 +23,7 @@ export const SpacecraftType = {
     type:'spacecraft',
     async destroy(){
         const finish=Loading(`destroying craft ${this.name}...`);
+        this.deleted = true;
         await SpaceTravelApi.destroySpacecraftById({id:this.id});
         await refreshAll();
         finish();
@@ -39,14 +40,14 @@ export const SpacecraftType = {
 
 import { fireSignal } from "./Events";
 export async function refreshAll() {
-    const [planetInfo, spacecraftInfo] = await Promise.all([
-      SpaceTravelApi.getPlanets(),
-      SpaceTravelApi.getSpacecrafts()
+    const [spacecraftInfo, planetInfo] = await Promise.all([
+        SpaceTravelApi.getSpacecrafts(),
+        SpaceTravelApi.getPlanets()
     ]);
   
-    OuterSpace2.planets = Convert(planetInfo.data, PlanetType);
     OuterSpace2.spacecrafts = Convert(spacecraftInfo.data, SpacecraftType);
-  
+    OuterSpace2.planets = Convert(planetInfo.data, PlanetType);
+
     fireSignal('planets', OuterSpace2.planets);
     fireSignal('crafts', OuterSpace2.spacecrafts);
 }

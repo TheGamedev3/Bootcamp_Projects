@@ -59,6 +59,8 @@ export function Card({
         padding: '10px',
         borderRadius: `${bevel}px`,
         margin: '10px',
+        position: 'relative', 
+        margin:0,
         ...style
     };
     if(selected){Object.assign(fullStyle, selectedStyle)}
@@ -68,11 +70,49 @@ export function Card({
         style={fullStyle}
         disabled={!enabled}
         onClick={onClick}
+        className="hover-wrapper"
       >
         {children}
       </button>
     );
 }
+
+import { useState } from 'react';
+
+export function HoverWrapper({ children, hoverButton }) {
+  const [hovered, setHovered] = useState(false);
+
+  return (
+    <div
+      style={{ position: 'relative', display: 'inline-block', padding:'0px 0px', margin:0 }}
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+    >
+    <div
+        style={{
+        position: 'absolute',
+        top: '10px',
+        right: '10px',
+        opacity: hovered ? 1 : 0,
+        pointerEvents: hovered ? 'auto' : 'none',
+        transition: 'opacity 0.2s ease',
+        padding: '0px',
+        cursor: 'pointer',
+        zIndex: 10
+        }}
+        onClick={(e) => {
+        e.stopPropagation();
+        hoverButton?.onClick?.();
+        }}
+    >
+        {hoverButton?.content || '❌'}
+    </div>
+      {children}
+    </div>
+  );
+}
+
+  
 
 
 export function Row({
@@ -106,5 +146,25 @@ export function Row({
       >
         {children}
       </div>
+    );
+}
+
+
+export function ButtonRow({style, children}){
+    return(
+        <Row style={{
+            backgroundColor:'black',
+            color: 'white',
+            fontSize: '2rem',
+            padding:'10px 10px',
+            justifyContent: 'center',
+            ...style
+        }}>
+            <nav style={{
+                    display: 'flex', justifyContent: 'center', gap: '40px'
+                }}>
+                {children}
+            </nav>
+        </Row>
     );
 }
