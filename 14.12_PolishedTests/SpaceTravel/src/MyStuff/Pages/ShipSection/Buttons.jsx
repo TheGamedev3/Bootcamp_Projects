@@ -9,7 +9,7 @@ export function SmartBackButton(){
     return(
         <Button
             text='⬅️ Back'
-            onClick={async()=>{
+            onClick={()=>{
                 navigate('/ships')
             }}
         />
