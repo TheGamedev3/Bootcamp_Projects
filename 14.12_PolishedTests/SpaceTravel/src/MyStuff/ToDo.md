@@ -7,7 +7,7 @@ Ship stuff:
     ✅ - description back button
     ✅ - create forum
     ✅    - making a magic forum
-        - maybe some dummy template ships
+    ✅    - maybe some dummy template ships
     ✅- hover profile to destroy ship
     ✅    - requires a hover button
     ✅ - destroy ship button in the description

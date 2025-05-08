@@ -23,10 +23,10 @@ export function Profile({title, url}){
     );
 }
 
-export function Subtitle({text, color, size='0.5'}){
+export function Subtitle({text, color, size='0.5', style={}}){
     return(
         <>
-            {text && <b style={{ fontSize: `${size}rem`, marginBottom: '0.5rem', color }}>{text}</b>}
+            {text && <b style={{ fontSize: `${size}rem`, marginBottom: '0.5rem', color, ...style }}>{text}</b>}
         </>
     );
 }
