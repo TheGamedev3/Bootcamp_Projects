@@ -21,6 +21,7 @@ function MiniCraft({ship}){
                     onClick={()=>targetMe()}
                     selectedStyle={{borderColor:'cyan'}}
                     selected={isTargeted}
+                    id={ship.name}
                 >
                     <Header title={ship.name} size='0.8'/>
                     <Profile url={myPfp}/>

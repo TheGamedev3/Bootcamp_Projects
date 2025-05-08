@@ -18,6 +18,7 @@ export default function Ship({bevel=8, size=150, onClick, ship}){
             bevel={bevel} size={size}
             onClick={onClick}
             style={{height:'220px'}}
+            id={ship.name}
         >
           <Header title={ship.name} size='1'/>
           <Subtitle color='orangered' text={`@${ship.getMyPlanet().name}`} size='.9'/>

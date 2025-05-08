@@ -31,6 +31,7 @@ export function Subtitle({text, color, size='0.5', style={}}){
     );
 }
 
+import toSafeId from '../ShipSection/BuildRocket/MagicForum/Shared/SafeId';
 
 export function Card({
 
@@ -41,6 +42,8 @@ export function Card({
     style={}, selectedStyle={}, selected=false,
 
     enabled=true, onClick=()=>{console.log('clicked')},
+
+    id,
 
     children
 }){
@@ -58,7 +61,6 @@ export function Card({
         width: `${size}px`,
         padding: '10px',
         borderRadius: `${bevel}px`,
-        margin: '10px',
         position: 'relative', 
         margin:0,
         ...style
@@ -71,6 +73,7 @@ export function Card({
         disabled={!enabled}
         onClick={onClick}
         className="hover-wrapper"
+        id={id && toSafeId(id)}
       >
         {children}
       </button>
@@ -189,7 +192,9 @@ export function Page({children}){
 
 export function Button({text, style, onClick}){
     return(
-        <Card onClick={onClick} style={{fontSize:'1.2rem', padding: '1px 0px', ...style}}>
+        <Card 
+        id={text}
+        onClick={onClick} style={{fontSize:'1.2rem', padding: '1px 0px', ...style}}>
             <b>{text}</b>
         </Card>
     );

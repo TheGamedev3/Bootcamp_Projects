@@ -16,6 +16,7 @@ export default function Planet({bevel=8, size=150, onClick, planet, selected}){
             style={{height:'220px'}}
             selectedStyle={{borderColor:'cyan'}}
             selected={selected}
+            id={planet.name}
         >
             <Header title={planet.name}/>
             <Profile url={planet.pictureUrl}/>

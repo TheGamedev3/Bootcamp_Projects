@@ -18,8 +18,8 @@ Moving Ship
     ✅ - const [selected, selectMe] = useMoveSelection(planet) hook
 
 Create Tests afterwards
-    - minitests for planet element, and the ship element
-    - navigate the through the pages (just simulate the whole entire site)
-    - finding ships/planets tests
-    - moving ships to planets test
-    - create/destroy a ship test
+    ✅ - minitests for planet element, and the ship element
+    ✅ - navigate the through the pages (just simulate the whole entire site)
+    ✅ - finding ships/planets tests
+    ✅ - moving ships to planets test
+    ✅ - create/destroy a ship test

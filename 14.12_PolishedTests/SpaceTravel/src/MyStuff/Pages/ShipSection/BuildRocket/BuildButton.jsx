@@ -49,6 +49,7 @@ export default function BuildButton(){
                 ? {border:'cyan', text:'cyan', back:'black'}
                 : {border:'red', text:'red', back:'black'}
             }
+            id='Create Ship'
         >
             <Header title={
                 name && name.trim()

@@ -31,6 +31,7 @@ export default function ShipList(){
                     onClick={()=>navigate('create')}
                     style={{height:'220px'}}
                     colors={{border:'lime', back:'black', text:'lime'}}
+                    id={'Create New 🚀'}
                 >
                     <Header title={'Create New 🚀'} size='1'/>
                     <Subtitle color='orangered' text={`@Earth`} size='.9'/>
