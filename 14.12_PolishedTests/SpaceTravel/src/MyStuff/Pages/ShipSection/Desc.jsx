@@ -33,6 +33,12 @@ export default function Desc(){
                             color:'orangered'
                         }}>{`@${spacecraft.getMyPlanet().name}`}</div>
 
+                        <div style={{
+                            textAlign:'center',
+                            fontSize:'2rem',
+                            color:'yellow'
+                        }}>{`📦${spacecraft.capacity}`}</div>
+
                         {url && (
                         <img
                             src={url}

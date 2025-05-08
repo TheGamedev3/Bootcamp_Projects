@@ -1,84 +1,19 @@
 
 
 
-import OuterSpace2 from "../../API/OuterSpace2";
-import { Page, ButtonRow, Row, Card } from "../SpaceComponents/Card";
-import {SmartBackButton} from "./Buttons";
-
+import OuterSpace2 from "../../../API/OuterSpace2";
+import { Page, ButtonRow, Row } from "../../SpaceComponents/Card";
+import {SmartBackButton} from "../Buttons";
 
 
 import {
     Fourm,
-    Collapser, Checkbox,
     SingleLine, Number, Paragraph,
-    useFourm, useInputs
-} from "../../MagicForum/Shared/ObtainAll";
+} from "./MagicForum/Shared/ObtainAll";
 
-import { Button } from "../SpaceComponents/Card";
-import { useNavigate } from "react-router-dom";
-
-function BuildButton(){
-
-    const ids = [
-        'name',
-        'capacity',
-        'picture',
-        'description'
-    ];
-    const[
-        name,
-        capacity,
-        picture,
-        description
-    ]=useInputs(...ids);
-    const forumref = useFourm();
-
-    const navigate = useNavigate();
-
-    return(
-        <Button
-            text={'Create'}
-            onClick={async()=>{
-                const forum = forumref?.obj?.current;
-                if(!forum){return}
-
-                await OuterSpace2.createCraft({
-                    name, capacity, pictureUrl:picture,
-                    description
-                });
-                
-                ids.forEach(id=>forum.reset(id));
-
-                navigate('/ships');
-            }}
-        />
-    )
-}
-
-const BuildForum = {
-    setters:{}, defaults:{},
-    set(id, val){
-        this[id] = val;
-        this.setters[id](val);
-        this.changedId(id);
-    },
-    reset(id){
-        this.set(id, this.defaults[id]);
-    },
-    events:{},
-    changedId(id){
-        if(this.events[id]){
-            this.events[id].forEach(func=>func(this[id]));
-        }
-    },
-    changed(id, listener){
-        (this.events[id]??=new Set()).add(listener);
-        listener(this[id]);
-    },
-    unchanged(id, listener){
-        (this.events[id]??=new Set()).delete(listener);
-    },
-};
+import BuildButton from "./BuildButton";
+import Template from "./Template";
+import { Templates, BuildForum } from "./Info";
 
 export default function Build(){
     const ready = OuterSpace2.useReady();
@@ -127,7 +62,9 @@ export default function Build(){
                                 marginBottom:'20px'
                             }}>{`🚀 Templates`}</h2>
 
-                            <Row></Row>
+                            <Row style={{gap:'10px'}}>
+                                {Templates.map((info,i)=><Template info={info} key={i}/>)}
+                            </Row>
                         </Fourm>
                     </div>
                 )

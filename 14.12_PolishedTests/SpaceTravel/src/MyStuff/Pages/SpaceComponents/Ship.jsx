@@ -21,6 +21,7 @@ export default function Ship({bevel=8, size=150, onClick, ship}){
         >
           <Header title={ship.name} size='1'/>
           <Subtitle color='orangered' text={`@${ship.getMyPlanet().name}`} size='.9'/>
+          <Subtitle color='yellow' text={`📦${ship.capacity}`} size='.9'/>
           <Profile url={myPfp}/>
         </Card>
       </InjectShipDelete>

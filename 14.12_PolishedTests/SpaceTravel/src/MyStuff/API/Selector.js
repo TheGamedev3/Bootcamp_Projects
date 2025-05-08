@@ -21,11 +21,10 @@ export function selectObject(object){
 
     fireSignal('moveTargetsChanged', selected);
 
-    if(selected.ship && selected.planet){
+    if(shipObject && selected.planet !== null){
         (async()=>{
-            const craftObj = OuterSpace2.getCraftById(selected.ship);
             const planetObj = OuterSpace2.getPlanetById(selected.planet);
-            await craftObj.sendTo(planetObj);
+            await shipObject.sendTo(planetObj);
             resetSelection();
         })()
     }
