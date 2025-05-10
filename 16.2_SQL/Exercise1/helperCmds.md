@@ -1,5 +1,6 @@
 
 
+-- WITHIN GIT BASH
 
 -- run script
 psql -U postgres -f "./sql-querying/{scriptname}.sql"
@@ -9,12 +10,8 @@ psql -U postgres -d {DATABASENAME}
 
 
 -- quit
-\q
+-- \q
 
 
 -- see all tables
-\dt
-
-
-psql -U postgres -f "./sql-querying/seed_products.sql"
-psql -U postgres -d products_db
+-- \dt
