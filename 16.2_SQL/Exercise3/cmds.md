@@ -1,11 +1,31 @@
 
 
 
+# Part 1: creating new schemas
+
+psql -U postgres -f "./designing/P1_medical.sql"
+psql -U postgres -d medical
+\i ./designing/P1_printAll.sql
 
 
+
+psql -U postgres -f "./designing/P2_craigslist.sql"
+psql -U postgres -d craig
+\i ./designing/P2_printAll.sql
+
+
+
+psql -U postgres -f "./designing/P3_tournament.sql"
+psql -U postgres -d soccer
+\i ./designing/P3_printAll.sql
+
+
+
+
+
+# Part 2: redesigning old schemas
 
 # ⚠️ I dynamically assemble the new tables/relationships in the examples, rather than manually typing out the ids and moving strings each time
-
 
 
 -- run scripts
