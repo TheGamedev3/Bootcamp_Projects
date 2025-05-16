@@ -26,7 +26,6 @@ const ExpressError = require("../expressError");
 function err(status, message, upon){
     if(upon){
         const fail = new ExpressError(message, status);
-        throw fail;
     }
 }
 

@@ -22,9 +22,7 @@ app.use(function (req, res, next) {
 /** general error handler */
 
 app.use(function(err, req, res, next) {
-  res.status(err.status || 500);
-
-  return res.json({
+  return res.status(err.status || 500).json({
     error: err,
     message: err.message
   });

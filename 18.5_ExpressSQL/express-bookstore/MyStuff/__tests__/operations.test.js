@@ -35,6 +35,19 @@ test('run operations',async()=>{
     data = await API('GET');
     match(Object.assign({},book1, book1Changes), data.books[0]);
 
+    // update with bad values/validation
+    const book1Changes2 = {
+        "pages": 2.3,
+        "publisher": 77,
+        "year": -4
+    };
+    const err = await API('PUT', `${book1.isbn}`, book1Changes2, {});
+    const expectGlitch = 'pages must be a positive integar!, publisher must be a string, year must be a positive integar!';
+    const status = err.response?.status;
+    const message = err.response?.data?.message;
+    expect(message.includes(expectGlitch)).toBeTruthy();
+    expect(status).toBe(422);
+
     const book2 = {
         "isbn": "123sbn444",
         "amazon_url": "http://googleSite",

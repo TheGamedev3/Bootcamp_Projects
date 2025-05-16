@@ -6,9 +6,7 @@ const axios = require('axios');
 async function API(action, bookRoute='', jsonData=null, expectError = false){
     try {
         let fullPath = `${link}/books/${bookRoute}`;
-
-        console.log(fullPath)
-
+        
         // For GET/DELETE, data must be sent as `params`, not `data`
         const dataIndex = (action === "GET" || action === "DELETE")
             ? 'params' : 'data';
