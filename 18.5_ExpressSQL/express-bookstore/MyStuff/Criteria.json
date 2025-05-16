@@ -1,0 +1,12 @@
+{
+  "validators": {
+    "isbn": "text",
+    "amazon_url": "text",
+    "author": "text",
+    "language": "text",
+    "pages": "positiveInt",
+    "publisher": "text",
+    "title": "text",
+    "year": "positiveInt"
+  }
+}
